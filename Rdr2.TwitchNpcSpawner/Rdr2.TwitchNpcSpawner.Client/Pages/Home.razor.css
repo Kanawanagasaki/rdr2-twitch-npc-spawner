@@ -1,0 +1,119 @@
+﻿.root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.body {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.loading {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    pointer-events: none;
+}
+
+    .loading.hide {
+        animation: loading-hide-kf .3s ease forwards;
+    }
+
+@keyframes loading-hide-kf {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+}
+
+.panel {
+    display: flex;
+    margin: 1rem;
+    animation: panel-show-kf .3s ease .3s forwards;
+    transform: translateY(-100px);
+    opacity: 0;
+    background-color: #2f2f2f;
+    border-radius: 6px;
+    border: 1px solid #222;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+@keyframes panel-show-kf {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.content {
+    width: 100%;
+    padding: 1rem;
+    line-height: 1.75rem;
+}
+
+h2 {
+    padding: 0;
+    margin: 0 0 .5rem 0;
+}
+
+code {
+    color: #0dcaf0;
+}
+
+.fail {
+    color: #dc3545;
+}
+
+.twitch {
+    color: #B9A3E3;
+}
+
+.twitch-auth {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.twitch-auth-btn {
+    color: white;
+    background: #6441A5;
+    border: none;
+    font-size: 1rem;
+    padding: .25rem .75rem;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.52);
+    cursor: pointer;
+}
+
+    .twitch-auth-btn:hover {
+        box-shadow: -2px -2px 2px rgba(0,0,0,1);
+    }
+
+    .twitch-auth-btn:disabled {
+        color: #aaa;
+        background: #352258;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.52) !important;
+    }
+
+.footer {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    font-size: .75rem;
+    color: #aaa;
+    padding-right: .5rem;
+}

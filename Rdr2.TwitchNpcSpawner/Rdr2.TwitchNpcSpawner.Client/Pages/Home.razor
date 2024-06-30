@@ -1,0 +1,69 @@
+﻿@page "/"
+
+<PageTitle>Twitch Ped Spawner</PageTitle>
+
+<div class="root">
+    <div class="header">
+        <Header />
+    </div>
+    <div class="body">
+        @if (_isLoaded && _status != EGameStatus.Initial)
+        {
+            <div class="panel">
+                @if (_status == EGameStatus.NotConnected)
+                {
+                    <div class="content">
+                        <h2 class="fail">Failed to connect to RDR 2</h2>
+                        Please make sure that game is currently running.<br />
+                        Also make sure you have <a href="http://dev-c.com/rdr2/scripthookrdr2/" target="_blank">ScriptHookRDR2</a> installed
+                        as well as the <a href="https://github.com/kanawanagasaki/rdr2-twitch-npc-spawner" target="_blank">RDR2 Twitch NPC Spawner</a> mod.<br />
+                        Files <code>dinput8.dll</code>, <code>ScriptHookRDR2.dll</code> and <code>rdr2-twitch-npc-spawner.asi</code> must be presented in RDR 2 root directory.
+                    </div>
+                }
+                else if (_status == EGameStatus.Failed)
+                {
+                    <div class="content">
+                        <h2>Connection to RDR 2 was established, <span class="fail">but the game state was not retrieved</span></h2>
+                        This is unexpected behavior. You can try refreshing this page, reloading the mod, or restarting the game, but no promises.
+                        Please contact <code>@@Kanawanagasaki</code> and explain what happened.
+                    </div>
+                }
+                else if (_status == EGameStatus.Unknown)
+                {
+                    <div class="content">
+                        <h2>Connection to RDR 2 was established</h2>
+                        Fetching game state...
+                    </div>
+                }
+                else if (_status == EGameStatus.Unauthorized)
+                {
+                    <div class="content">
+                        <h2><span class="twitch">Twitch</span> authorization required</h2>
+                        <div class="twitch-auth">
+                            <button type="button" class="twitch-auth-btn" disabled=@_isLogginigWithTwitch @onclick=@LoginWithTwitch>
+                                Login
+                            </button>
+                        </div>
+                        @if (_isFailedToLoginWithTwitch)
+                        {
+                            <div class="fail">
+                                Failed to login with twitch
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <CascadingValue Value=@this>
+                        <ControlPanel GameState=@_state />
+                    </CascadingValue>
+                }
+            </div>
+        }
+
+        <span class="loading @(_isLoaded && _status != EGameStatus.Initial ? "hide" : "")">NOW LOADING...</span>
+    </div>
+    <div class="footer">
+        Made with ❤️ by Kanawanagasaki
+    </div>
+</div>

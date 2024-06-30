@@ -1,0 +1,10 @@
+﻿.root {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: #2f2f2f;
+    border-bottom: black;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}

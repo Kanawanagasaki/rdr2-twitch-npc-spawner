@@ -1,0 +1,191 @@
+﻿@using Rdr2.TwitchNpcSpawner.Client.Shared
+<div class="root">
+    <div class="side-panel">
+        @if (_user?.profile_image_url is null)
+        {
+            <div class="pfp-placeholder pulse"></div>
+        }
+        else
+        {
+            <img src=@_user.profile_image_url width="225" height="225" />
+        }
+        <div class="state">
+            <div>Connection state:</div><div>@(GameState?.eventSub?.state ?? "NULL")</div>
+            <div>Last message:</div><div>@(TimeSpan.FromMilliseconds(GameState?.eventSub?.lastMessageMs ?? 0).ToString(@"dd\.hh\:mm\:ss"))</div>
+            <div>Last pull:</div><div>@(TimeSpan.FromMilliseconds(GameState?.eventSub?.lastRedemptionPull ?? 0).ToString(@"dd\.hh\:mm\:ss"))</div>
+            <div>Next pull:</div><div>@(TimeSpan.FromMilliseconds(GameState?.eventSub?.nextRedemptionPull ?? 0).ToString(@"dd\.hh\:mm\:ss"))</div>
+        </div>
+        <button @onclick=@KickAll>
+            Despawn all peds
+        </button>
+        @if (GameState?.eventSub?.state == "DISCONNECTED")
+        {
+            <button @onclick=@TryReconnect>
+                Reconnect
+            </button>
+        }
+        else if (GameState?.eventSub?.state == "RECEIVE_MESSAGE" || GameState?.eventSub?.state == "WAIT_MESSAGE" || GameState?.eventSub?.state == "WAIT_EXTRACT_MESSAGE")
+        {
+            <button @onclick=@Disconnect>
+                Disconnect
+            </button>
+        }
+        else if (GameState?.eventSub?.state == "CLOSE" || GameState?.eventSub?.state == "WAIT_CLOSE")
+        {
+            <button>
+                Disconnecting...
+            </button>
+        }
+        else
+        {
+            <button>
+                Connecting...
+            </button>
+        }
+        <button class="danger" @onclick=@Logout>
+            Logout
+        </button>
+    </div>
+    <div class="content">
+        <h3>Enabled rewards</h3>
+        <div class="rewards-wrapper">
+            <div class="rewards @(_isInitialized ? "" : "pulse")">
+                @foreach (var reward in _rewards.Where(x => x.IsCreated && x.TwitchModel is not null && x.TwitchModel.is_enabled))
+                {
+                    var twitchModel = reward.TwitchModel!;
+                    var rewardType = reward.Type switch
+                    {
+                        Shared.ERewardType.Animal => "Animal",
+                        Shared.ERewardType.Cavalry => "Cavalry",
+                        Shared.ERewardType.Companion => "Companion",
+                        _ => ""
+                    };
+
+                    <div class="reward" style="background-color: @(twitchModel.background_color ?? "black");">
+                        <img src="@(GetBestImage(twitchModel.image ?? twitchModel.default_image))" />
+                        <div>
+                            @rewardType
+                        </div>
+                        <div>
+                            @twitchModel.cost
+                        </div>
+                        <div class="reward-options">
+                            <button @onclick=@(()=>_editing = reward)>
+                                Edit
+                            </button>
+                            <button class="danger" @onclick=@(()=>DisableReward(reward))>
+                                Disable
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        @if (_isFailedToDisableReward)
+        {
+            <div class="fail">
+                Failed to disable reward
+            </div>
+        }
+        <h3>Disabled rewards</h3>
+        <div class="rewards-wrapper">
+            <div class="rewards @(_isInitialized ? "" : "pulse")">
+                @foreach (var reward in _rewards.Where(x => !x.IsCreated || x.TwitchModel is null || !x.TwitchModel.is_enabled))
+                {
+                    var twitchModel = reward.TwitchModel;
+                    var rewardType = reward.Type switch
+                    {
+                        Shared.ERewardType.Animal => "Animal",
+                        Shared.ERewardType.Cavalry => "Cavalry",
+                        Shared.ERewardType.Companion => "Companion",
+                        _ => ""
+                    };
+                    var backgroundColor = reward.Type switch
+                    {
+                        Shared.ERewardType.Animal => "#99efa7",
+                        Shared.ERewardType.Cavalry => "#39b6d5",
+                        Shared.ERewardType.Companion => "#fea345",
+                        _ => "#ffffff"
+                    };
+
+                    <div class="reward" style="background-color: @(twitchModel?.background_color ?? backgroundColor);">
+                        <img src="@(GetBestImage(twitchModel?.image ?? twitchModel?.default_image))" />
+                        <div>
+                            @rewardType
+                        </div>
+                        <div class="reward-options">
+                            <button @onclick=@(()=>EnableReward(reward))>
+                                Enable
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        @if (_isFailedToEnableReward)
+        {
+            <div class="fail">
+                Failed to enable reward
+            </div>
+        }
+        <h3>Queue</h3>
+        <div class="pending-redemptions">
+            @if (GameState?.pendingRedemptions is not null)
+            {
+                if (GameState.pendingRedemptions.Length == 0)
+                {
+                    <div class="pending-redemptions-not-found">
+                        Nothing in queue
+                    </div>
+                }
+                else
+                {
+                    foreach (var redemption in GameState.pendingRedemptions)
+                    {
+                        <div class="redemption">
+                            <div class="viewer-nickname" title=@redemption.id>
+                                @(redemption.userName) (@(redemption.userLogin))
+                            </div>
+                            <div class="redemption-type">
+                                @((ERewardType)redemption.type)
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+        <h3>Spawned Peds</h3>
+        <div class="spawned-peds">
+            @if (GameState?.spawnedPeds is not null)
+            {
+                if (GameState.spawnedPeds.Length == 0)
+                {
+                    <div class="spawned-peds-not-found">
+                        No spawned peds
+                    </div>
+                }
+                else
+                {
+                    foreach (var spawnedPed in GameState.spawnedPeds)
+                    {
+                        <div class="spawned-ped">
+                            <div class="viewer-nickname" title=@spawnedPed.viewerId>
+                                @spawnedPed.nickname
+                            </div>
+                            <button class="danger" @onclick=@(()=>KickPed(spawnedPed.handle))>
+                                Despawn
+                            </button>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (_editing is not null && _editing.TwitchModel is not null)
+{
+    <CascadingValue Value=@this>
+        <EditCustomReward Reward=@_editing />
+    </CascadingValue>
+}

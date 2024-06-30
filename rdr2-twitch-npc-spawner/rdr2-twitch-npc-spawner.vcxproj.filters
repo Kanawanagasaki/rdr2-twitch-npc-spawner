@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{75812aad-81e8-4b48-a65f-829b34049b63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\pplx">
+      <UniqueIdentifier>{b64de91f-55b3-4613-9349-32b0bda2ba81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\cpprest">
+      <UniqueIdentifier>{39b4e143-d197-414e-8673-f4e886fa8604}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\cpprest\details">
+      <UniqueIdentifier>{b3c955fd-4ed5-422b-ab6c-2bd54c4070b8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="script.cpp" />
+    <ClCompile Include="localServer.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="auth.cpp" />
+    <ClCompile Include="rewards.cpp" />
+    <ClCompile Include="util.cpp" />
+    <ClCompile Include="namedPed.cpp" />
+    <ClCompile Include="easing.cpp" />
+    <ClCompile Include="namedPedAnimal.cpp" />
+    <ClCompile Include="namedPedCavalry.cpp" />
+    <ClCompile Include="namedPedCompanion.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="script.h" />
+    <ClInclude Include="inc\main.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\enums.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\natives.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\types.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\nativeCaller.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\pplx\pplx.h">
+      <Filter>inc\pplx</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\pplx\pplxcancellation_token.h">
+      <Filter>inc\pplx</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\pplx\pplxconv.h">
+      <Filter>inc\pplx</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\pplx\pplxinterface.h">
+      <Filter>inc\pplx</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\pplx\pplxlinux.h">
+      <Filter>inc\pplx</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\pplx\pplxtasks.h">
+      <Filter>inc\pplx</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\pplx\pplxwin.h">
+      <Filter>inc\pplx</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\pplx\threadpool.h">
+      <Filter>inc\pplx</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\astreambuf.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\asyncrt_utils.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\base_uri.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\containerstream.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\filestream.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\http_client.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\http_compression.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\http_headers.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\http_listener.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\http_msg.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\interopstream.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\json.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\oauth1.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\oauth2.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\producerconsumerstream.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\rawptrstream.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\streams.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\uri.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\uri_builder.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\version.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\ws_client.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\ws_msg.h">
+      <Filter>inc\cpprest</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\details\basic_types.h">
+      <Filter>inc\cpprest\details</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\details\cpprest_compat.h">
+      <Filter>inc\cpprest\details</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\details\fileio.h">
+      <Filter>inc\cpprest\details</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\details\http_helpers.h">
+      <Filter>inc\cpprest\details</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\details\http_server.h">
+      <Filter>inc\cpprest\details</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\details\http_server_api.h">
+      <Filter>inc\cpprest\details</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\details\nosal.h">
+      <Filter>inc\cpprest\details</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\details\resource.h">
+      <Filter>inc\cpprest\details</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\details\SafeInt3.hpp">
+      <Filter>inc\cpprest\details</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cpprest\details\web_utilities.h">
+      <Filter>inc\cpprest\details</Filter>
+    </ClInclude>
+    <ClInclude Include="localServer.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="auth.h" />
+    <ClInclude Include="rewards.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="namedPed.h" />
+    <ClInclude Include="easing.h" />
+    <ClInclude Include="namedPedAnimal.h" />
+    <ClInclude Include="namedPedCavalry.h" />
+    <ClInclude Include="namedPedCompanion.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="inc\cpprest\details\http_constants.dat">
+      <Filter>inc\cpprest\details</Filter>
+    </None>
+  </ItemGroup>
+</Project>
