@@ -29,8 +29,6 @@ NamedPedCompanion::NamedPedCompanion(Ped handle, std::string viewerId, std::stri
 
 	PED::SET_PED_AS_GROUP_MEMBER(handle, PLAYER::GET_PLAYER_GROUP(PLAYER::PLAYER_ID()));
 	PED::SET_PED_CAN_TELEPORT_TO_GROUP_LEADER(handle, PLAYER::GET_PLAYER_GROUP(PLAYER::PLAYER_ID()), false);
-	// PED::SET_GROUP_FORMATION(PLAYER::GET_PLAYER_GROUP(PLAYER::PLAYER_ID()), 1);
-	// PED::SET_GROUP_FORMATION_SPACING(PLAYER::GET_PLAYER_GROUP(PLAYER::PLAYER_ID()), 10.0f, 10.0f, 200.0f);
 	PED::SET_PED_COMBAT_ATTRIBUTES(handle, 5, true);
 	PED::SET_PED_COMBAT_ATTRIBUTES(handle, 46, true);
 	PED::SET_PED_ACCURACY(handle, 100);
@@ -99,7 +97,7 @@ void NamedPedCompanion::Tick()
 		TASK::TASK_GO_TO_ENTITY(handle, PLAYER::PLAYER_PED_ID(), -1, 10.0f, 4.0f, 20.0f, 0);
 	}
 
-	if (MISC::GET_GAME_TIMER() - lastGroupResetTime < 5000)
+	if (15000 < MISC::GET_GAME_TIMER() - lastGroupResetTime)
 	{
 		PED::SET_PED_RELATIONSHIP_GROUP_HASH(handle, GetRelationshipGroup());
 		PED::SET_PED_AS_GROUP_MEMBER(handle, 0);
@@ -117,7 +115,7 @@ void NamedPedCompanion::Tick()
 		}
 	}
 
-	if (PED::IS_PED_IN_ANY_VEHICLE(plPed, true))
+	if (PED::IS_PED_IN_ANY_VEHICLE(plPed, false))
 	{
 		auto veh = PED::GET_VEHICLE_PED_IS_IN(plPed, true);
 		auto vehModel = ENTITY::GET_ENTITY_MODEL(veh);
@@ -131,17 +129,23 @@ void NamedPedCompanion::Tick()
 
 		if (PED::IS_PED_IN_ANY_VEHICLE(handle, false))
 		{
-			int seat = -1;
-			for (int i = 0; i <= 2; i++)
-				if (!VEHICLE::IS_VEHICLE_SEAT_FREE(veh, i) && VEHICLE::GET_PED_IN_VEHICLE_SEAT(veh, i) == handle)
-					seat = i;
-
-			if (numSeats - 1 <= groupMembersCount || seat < groupMembersCount)
+			auto pedVeh = PED::GET_VEHICLE_PED_IS_IN(handle, true);
+			if (veh == pedVeh && 1500 < MISC::GET_GAME_TIMER() - lastLeaveVehTime)
 			{
-				if (ENTITY::GET_ENTITY_SPEED(veh) < 3.0f)
-					TASK::TASK_LEAVE_ANY_VEHICLE(handle, 0, 0);
-				else
-					TASK::TASK_LEAVE_ANY_VEHICLE(handle, 0, 4160);
+				int seat = -1;
+				for (int i = 0; i <= 2; i++)
+					if (!VEHICLE::IS_VEHICLE_SEAT_FREE(veh, i) && VEHICLE::GET_PED_IN_VEHICLE_SEAT(veh, i) == handle)
+						seat = i;
+
+				if (numSeats - 1 <= groupMembersCount || seat < groupMembersCount)
+				{
+					if (ENTITY::GET_ENTITY_SPEED(veh) < 3.0f)
+						TASK::TASK_LEAVE_ANY_VEHICLE(handle, 200, 64);
+					else
+						TASK::TASK_LEAVE_ANY_VEHICLE(handle, 200, 4160);
+				}
+
+				lastLeaveVehTime = MISC::GET_GAME_TIMER();
 			}
 		}
 		else
@@ -150,14 +154,16 @@ void NamedPedCompanion::Tick()
 			auto seat = PED::GET_SEAT_PED_IS_TRYING_TO_ENTER(handle);
 			if (veh2 == veh && ENTITY::DOES_ENTITY_EXIST(veh2) && (seat < groupMembersCount || !VEHICLE::IS_VEHICLE_SEAT_FREE(veh, seat)))
 			{
-				TASK::CLEAR_PED_TASKS(handle, true, true);
+				TASK::CLEAR_PED_TASKS_IMMEDIATELY(handle, true, true);
 				int trySeat = max(groupMembersCount, seat + 1) % 3;
 				if (groupMembersCount <= trySeat && VEHICLE::IS_VEHICLE_SEAT_FREE(veh, trySeat))
 					TASK::TASK_ENTER_VEHICLE(handle, veh, -1, trySeat, 4.0f, 1, 0);
+				else
+					TASK::TASK_STAND_STILL(handle, 2500);
 			}
 		}
 	}
-	else if (PED::IS_PED_IN_ANY_VEHICLE(handle, true))
+	else if (PED::IS_PED_IN_ANY_VEHICLE(handle, false))
 	{
 		auto veh = PED::GET_VEHICLE_PED_IS_IN(handle, true);
 

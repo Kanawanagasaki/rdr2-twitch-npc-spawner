@@ -98,7 +98,7 @@ namespace Rewards
 		{
 			if (shouldAnnounceConnection)
 			{
-				Game::ShowNotification("Twitch NPC Spawner: Connected");
+				Game::ShowNotification("Twitch NPC Spawner 1.0.1: Connected");
 				shouldAnnounceConnection = false;
 			}
 			state = STATE_RECEIVE_MESSAGE;
@@ -152,7 +152,7 @@ namespace Rewards
 
 		auto res = redemptionTask.get();
 		if (res.status_code() != 200)
-			nextRedemptionPull = Util::Now() + 600000;
+			nextRedemptionPull = Util::Now() + 300000;
 		else
 		{
 			nextRedemptionPull = Util::Now() + 30000;

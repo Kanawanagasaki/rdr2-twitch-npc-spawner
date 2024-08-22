@@ -9,8 +9,8 @@
 #include <string>
 #include <cmath>
 
-std::vector<std::string> animalModels = { "A_C_Alligator_01","A_C_Alligator_02","A_C_Alligator_03","A_C_Armadillo_01","A_C_Badger_01","A_C_Bat_01","A_C_Bear_01","A_C_BearBlack_01","A_C_Beaver_01","A_C_BigHornRam_01","A_C_BlueJay_01","A_C_Boar_01","A_C_BoarLegendary_01","A_C_Buck_01","A_C_Buffalo_01","A_C_Buffalo_Tatanka_01","A_C_Bull_01","A_C_CaliforniaCondor_01","A_C_Cardinal_01","A_C_CarolinaParakeet_01","A_C_Cat_01","A_C_CedarWaxwing_01","A_C_Chicken_01","A_C_Chipmunk_01","A_C_Cormorant_01","A_C_Cougar_01","A_C_Cow","A_C_Coyote_01","A_C_Crab_01","A_C_CraneWhooping_01","A_C_Crawfish_01","A_C_Crow_01","A_C_Deer_01","A_C_DogAmericanFoxhound_01","A_C_DogAustralianSheperd_01","A_C_DogBluetickCoonhound_01","A_C_DogCatahoulaCur_01","A_C_DogChesBayRetriever_01","A_C_DogCollie_01","A_C_DogHobo_01","A_C_DogHound_01","A_C_DogHusky_01","A_C_DogLab_01","A_C_DogLion_01","A_C_DogPoodle_01","A_C_DogRufus_01","A_C_DogStreet_01","A_C_Donkey_01","A_C_Duck_01","A_C_EAGLE_01","A_C_Eagle_01","A_C_Egret_01","A_C_Elk_01","A_C_Fox_01","A_C_FrogBull_01","A_C_GilaMonster_01","A_C_Goat_01","A_C_GooseCanada_01","A_C_Hawk_01","A_C_Heron_01","A_C_Iguana_01","A_C_IguanaDesert_01","A_C_Javelina_01","A_C_LionMangy_01","A_C_Loon_01","A_C_Moose_01","A_C_Muskrat_01","A_C_Oriole_01","A_C_Owl_01","A_C_Ox_01","A_C_Panther_01","A_C_Parrot_01","A_C_Pelican_01","A_C_Pheasant_01","A_C_Pig_01","A_C_Pigeon","A_C_Possum_01","A_C_PrairieChicken_01","A_C_Pronghorn_01","A_C_Quail_01","A_C_Rabbit_01","A_C_Raccoon_01","A_C_Rat_01","A_C_Raven_01","A_C_RedFootedBooby_01","A_C_Robin_01","A_C_Rooster_01","A_C_RoseateSpoonbill_01","A_C_Seagull_01","A_C_Sheep_01","A_C_Skunk_01","A_C_Snake_01","A_C_SnakeBlackTailRattle_01","A_C_SnakeFerDeLance_01","A_C_SnakeRedBoa_01","A_C_SnakeRedBoa10ft_01","A_C_SongBird_01","A_C_Sparrow_01","A_C_Squirrel_01","A_C_Toad_01","A_C_Turkey_01","A_C_Turkey_02","A_C_TurkeyWild_01","A_C_TurtleSnapping_01","A_C_Vulture_01","A_C_Wolf","A_C_Wolf_Medium","A_C_Wolf_Small","A_C_Woodpecker_01","A_C_Woodpecker_02" };
-std::vector<std::string> animalModelsWihtoutPredators = { "A_C_Armadillo_01","A_C_Badger_01","A_C_Bat_01","A_C_Beaver_01","A_C_BigHornRam_01","A_C_BlueJay_01","A_C_Boar_01","A_C_BoarLegendary_01","A_C_Buck_01","A_C_Buffalo_01","A_C_Buffalo_Tatanka_01","A_C_Bull_01","A_C_CaliforniaCondor_01","A_C_Cardinal_01","A_C_CarolinaParakeet_01","A_C_Cat_01","A_C_CedarWaxwing_01","A_C_Chicken_01","A_C_Chipmunk_01","A_C_Cormorant_01","A_C_Cow","A_C_Crab_01","A_C_CraneWhooping_01","A_C_Crawfish_01","A_C_Crow_01","A_C_Deer_01","A_C_DogAmericanFoxhound_01","A_C_DogAustralianSheperd_01","A_C_DogBluetickCoonhound_01","A_C_DogCatahoulaCur_01","A_C_DogChesBayRetriever_01","A_C_DogCollie_01","A_C_DogHobo_01","A_C_DogHound_01","A_C_DogHusky_01","A_C_DogLab_01","A_C_DogLion_01","A_C_DogPoodle_01","A_C_DogRufus_01","A_C_DogStreet_01","A_C_Donkey_01","A_C_Duck_01","A_C_EAGLE_01","A_C_Eagle_01","A_C_Egret_01","A_C_Elk_01","A_C_Fox_01","A_C_FrogBull_01","A_C_GilaMonster_01","A_C_Goat_01","A_C_GooseCanada_01","A_C_Hawk_01","A_C_Heron_01","A_C_Iguana_01","A_C_IguanaDesert_01","A_C_Javelina_01","A_C_Loon_01","A_C_Moose_01","A_C_Muskrat_01","A_C_Oriole_01","A_C_Owl_01","A_C_Ox_01","A_C_Parrot_01","A_C_Pelican_01","A_C_Pheasant_01","A_C_Pig_01","A_C_Pigeon","A_C_Possum_01","A_C_PrairieChicken_01","A_C_Pronghorn_01","A_C_Quail_01","A_C_Rabbit_01","A_C_Raccoon_01","A_C_Rat_01","A_C_Raven_01","A_C_RedFootedBooby_01","A_C_Robin_01","A_C_Rooster_01","A_C_RoseateSpoonbill_01","A_C_Seagull_01","A_C_Sheep_01","A_C_Skunk_01","A_C_SongBird_01","A_C_Sparrow_01","A_C_Squirrel_01","A_C_Toad_01","A_C_Turkey_01","A_C_Turkey_02","A_C_TurkeyWild_01","A_C_TurtleSnapping_01","A_C_Vulture_01","A_C_Woodpecker_01","A_C_Woodpecker_02"};
+std::vector<std::string> animalModels = { "A_C_Alligator_01","A_C_Alligator_02","A_C_Alligator_03","A_C_Armadillo_01","A_C_Badger_01","A_C_Bat_01","A_C_Bear_01","A_C_BearBlack_01","A_C_Beaver_01","A_C_BigHornRam_01","A_C_BlueJay_01","A_C_Boar_01","A_C_BoarLegendary_01","A_C_Buck_01","A_C_Buffalo_01","A_C_Buffalo_Tatanka_01","A_C_Bull_01","A_C_CaliforniaCondor_01","A_C_Cardinal_01","A_C_CarolinaParakeet_01","A_C_Cat_01","A_C_CedarWaxwing_01","A_C_Chicken_01","A_C_Chipmunk_01","A_C_Cormorant_01","A_C_Cougar_01","A_C_Cow","A_C_Coyote_01","A_C_Crab_01","A_C_CraneWhooping_01","A_C_Crawfish_01","A_C_Crow_01","A_C_Deer_01","A_C_DogAustralianSheperd_01","A_C_DogBluetickCoonhound_01","A_C_DogChesBayRetriever_01","A_C_DogCollie_01","A_C_DogHobo_01","A_C_DogHound_01","A_C_DogHusky_01","A_C_DogLab_01","A_C_DogLion_01","A_C_DogPoodle_01","A_C_DogRufus_01","A_C_DogStreet_01","A_C_Donkey_01","A_C_Duck_01","A_C_EAGLE_01","A_C_Eagle_01","A_C_Egret_01","A_C_Elk_01","A_C_Fox_01","A_C_FrogBull_01","A_C_GilaMonster_01","A_C_Goat_01","A_C_GooseCanada_01","A_C_Hawk_01","A_C_Heron_01","A_C_Iguana_01","A_C_IguanaDesert_01","A_C_Javelina_01","A_C_LionMangy_01","A_C_Loon_01","A_C_Moose_01","A_C_Muskrat_01","A_C_Oriole_01","A_C_Owl_01","A_C_Ox_01","A_C_Panther_01","A_C_Parrot_01","A_C_Pelican_01","A_C_Pheasant_01","A_C_Pig_01","A_C_Pigeon","A_C_Possum_01","A_C_PrairieChicken_01","A_C_Pronghorn_01","A_C_Quail_01","A_C_Rabbit_01","A_C_Raccoon_01","A_C_Rat_01","A_C_Raven_01","A_C_RedFootedBooby_01","A_C_Robin_01","A_C_Rooster_01","A_C_RoseateSpoonbill_01","A_C_Seagull_01","A_C_Sheep_01","A_C_Skunk_01","A_C_Snake_01","A_C_SnakeBlackTailRattle_01","A_C_SnakeFerDeLance_01","A_C_SnakeRedBoa_01","A_C_SnakeRedBoa10ft_01","A_C_SongBird_01","A_C_Sparrow_01","A_C_Squirrel_01","A_C_Toad_01","A_C_Turkey_01","A_C_Turkey_02","A_C_TurkeyWild_01","A_C_TurtleSnapping_01","A_C_Vulture_01","A_C_Wolf","A_C_Wolf_Medium","A_C_Wolf_Small","A_C_Woodpecker_01","A_C_Woodpecker_02" };
+std::vector<std::string> animalModelsWihtoutPredators = { "A_C_Armadillo_01","A_C_Badger_01","A_C_Bat_01","A_C_Beaver_01","A_C_BigHornRam_01","A_C_BlueJay_01","A_C_Boar_01","A_C_BoarLegendary_01","A_C_Buck_01","A_C_Buffalo_01","A_C_Buffalo_Tatanka_01","A_C_Bull_01","A_C_CaliforniaCondor_01","A_C_Cardinal_01","A_C_CarolinaParakeet_01","A_C_Cat_01","A_C_CedarWaxwing_01","A_C_Chicken_01","A_C_Chipmunk_01","A_C_Cormorant_01","A_C_Cow","A_C_Crab_01","A_C_CraneWhooping_01","A_C_Crawfish_01","A_C_Crow_01","A_C_Deer_01","A_C_DogAustralianSheperd_01","A_C_DogBluetickCoonhound_01","A_C_DogChesBayRetriever_01","A_C_DogCollie_01","A_C_DogHobo_01","A_C_DogHound_01","A_C_DogHusky_01","A_C_DogLab_01","A_C_DogLion_01","A_C_DogPoodle_01","A_C_DogRufus_01","A_C_DogStreet_01","A_C_Donkey_01","A_C_Duck_01","A_C_EAGLE_01","A_C_Eagle_01","A_C_Egret_01","A_C_Elk_01","A_C_Fox_01","A_C_FrogBull_01","A_C_GilaMonster_01","A_C_Goat_01","A_C_GooseCanada_01","A_C_Hawk_01","A_C_Heron_01","A_C_Iguana_01","A_C_IguanaDesert_01","A_C_Javelina_01","A_C_Loon_01","A_C_Moose_01","A_C_Muskrat_01","A_C_Oriole_01","A_C_Owl_01","A_C_Ox_01","A_C_Parrot_01","A_C_Pelican_01","A_C_Pheasant_01","A_C_Pig_01","A_C_Pigeon","A_C_Possum_01","A_C_PrairieChicken_01","A_C_Pronghorn_01","A_C_Quail_01","A_C_Rabbit_01","A_C_Raccoon_01","A_C_Rat_01","A_C_Raven_01","A_C_RedFootedBooby_01","A_C_Robin_01","A_C_Rooster_01","A_C_RoseateSpoonbill_01","A_C_Seagull_01","A_C_Sheep_01","A_C_Skunk_01","A_C_SongBird_01","A_C_Sparrow_01","A_C_Squirrel_01","A_C_Toad_01","A_C_Turkey_01","A_C_Turkey_02","A_C_TurkeyWild_01","A_C_TurtleSnapping_01","A_C_Vulture_01","A_C_Woodpecker_01","A_C_Woodpecker_02" };
 
 NamedPedAnimal::NamedPedAnimal(Ped handle, std::string viewerId, std::string nickname) : NamedPed(handle, viewerId, nickname)
 {
@@ -167,22 +167,71 @@ bool NamedPedAnimal::TryCreate(Game::Redemption* redemption, NamedPed** res)
 	return true;
 }
 
-std::vector<std::string> NamedPedAnimal::FilterByUserInput(std::vector<std::string>& models, std::string& userInput)
+int NamedPedAnimal::CalculateScore(const std::string& userInput, const std::string& model)
 {
-	auto toLower = [](std::string str)
+	int score = 0;
+	int len = userInput.length();
+	std::unordered_map<std::string, int> substringScores;
+
+	for (int i = 0; i < len; ++i)
+	{
+		for (int j = i + 2; j <= len; ++j)
+		{
+			std::string subStr = userInput.substr(i, j - i);
+			if (substringScores.find(subStr) == substringScores.end())
+			{
+				if (model.find(subStr) != std::string::npos)
+					substringScores[subStr] = subStr.length();
+				else
+					substringScores[subStr] = 0;
+			}
+			score += substringScores[subStr];
+		}
+	}
+
+	return score;
+}
+
+std::vector<std::string> NamedPedAnimal::FilterByUserInput(std::vector<std::string>& models, std::string& userInput) {
+	auto toLower = [](const std::string& str)
 		{
 			std::string result = str;
-			std::transform(result.begin(), result.end(), result.begin(), [](char c) { return std::tolower(c); });
+			std::transform(result.begin(), result.end(), result.begin(), [](unsigned char c) { return std::tolower(c); });
 			return result;
 		};
 
-	std::vector<std::string> result;
 	std::string lowerUserInput = toLower(userInput);
+
+	const std::string legendaryStr = "legendary";
+	size_t pos;
+	while ((pos = lowerUserInput.find(legendaryStr)) != std::string::npos)
+		lowerUserInput.erase(pos, legendaryStr.length());
+
+	std::vector<std::pair<std::string, int>> scoredModels;
+	scoredModels.reserve(models.size());
+
 	for (const auto& model : models)
 	{
 		std::string lowerModel = toLower(model);
-		if (lowerModel.find(lowerUserInput) != std::string::npos)
-			result.push_back(model);
+		int score = CalculateScore(lowerUserInput, lowerModel);
+		if (0 < score)
+			scoredModels.emplace_back(model, score);
 	}
+
+	std::sort(scoredModels.begin(), scoredModels.end(), [](const auto& a, const auto& b) { return b.second < a.second; });
+
+	if (scoredModels.empty() || scoredModels.front().second < 2)
+		return {};
+
+	int bestScore = scoredModels.front().second;
+
+	std::vector<std::string> result;
+	for (const auto& pair : scoredModels)
+	{
+		if (pair.second == bestScore)
+			result.push_back(pair.first);
+		else break;
+	}
+
 	return result;
 }

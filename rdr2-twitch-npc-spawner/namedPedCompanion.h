@@ -9,6 +9,7 @@ private:
 	static Hash GetRelationshipGroup();
 
 	int lastGroupResetTime = 0;
+	int lastLeaveVehTime = 0;
 
 public:
 	NamedPedCompanion(Ped handle, std::string viewerId, std::string nickname);

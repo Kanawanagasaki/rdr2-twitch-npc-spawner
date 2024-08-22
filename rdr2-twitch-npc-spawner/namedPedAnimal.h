@@ -19,6 +19,7 @@ public:
 
 	static bool TryCreate(Game::Redemption* redemption, NamedPed** res);
 
+	static int CalculateScore(const std::string& userInput, const std::string& model);
 	static std::vector<std::string> FilterByUserInput(std::vector<std::string>& names, std::string& userInput);
 };
 

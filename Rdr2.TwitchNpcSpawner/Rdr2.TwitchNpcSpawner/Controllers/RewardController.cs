@@ -50,9 +50,9 @@ public class RewardController(JwtService _jwtService, TwitchApiClient _twitchApi
                 TwitchId = null,
                 Title = type switch
                 {
-                    ERewardType.Animal => "NPC Spawner: Animal",
-                    ERewardType.Cavalry => "NPC Spawner: Cavalry",
-                    ERewardType.Companion => "NPC Spawner: Companion",
+                    ERewardType.Animal => "RDR2 NPC Spawner: Animal",
+                    ERewardType.Cavalry => "RDR2 NPC Spawner: Cavalry",
+                    ERewardType.Companion => "RDR2 NPC Spawner: Companion",
                     _ => "Spawn an NPC named after you in game"
                 },
                 Cost = type switch
@@ -409,7 +409,7 @@ public class RewardController(JwtService _jwtService, TwitchApiClient _twitchApi
             if (reward.TwitchId is not null)
             {
                 var redemption = await _twitchApi.GetRedemption(user, reward.TwitchId, redemptionId);
-                await _twitchApi.UpdateRedemptionStatus(user, reward.TwitchId, redemptionId, TwitchApiClient.ERedemptionStatus.FULFILLED);
+                    await _twitchApi.UpdateRedemptionStatus(user, reward.TwitchId, redemptionId, TwitchApiClient.ERedemptionStatus.FULFILLED);
 
                 if (_conf["RewardReport:ChannelTwitchId"] == user.TwitchId
                     && !string.IsNullOrWhiteSpace(_conf["RewardReport:Endpoint"])
